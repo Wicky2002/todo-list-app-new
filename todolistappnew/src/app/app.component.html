@@ -1,0 +1,38 @@
+<div class="dashboard">
+  <aside class="sidebar">
+    <div class="logo">🗂️</div>
+    <nav>
+      <span class="material-icons">dashboard</span>
+      <span class="material-icons">check_circle</span>
+      <span class="material-icons">calendar_today</span>
+      <span class="material-icons">settings</span>
+    </nav>
+    <div class="user">
+      <img src="https://i.pravatar.cc/40" alt="User Avatar" />
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header>
+      <h1>My Tasks</h1>
+      <button class="add-btn" (click)="addTask()">+ Add Task</button>
+    </header>
+
+    <section class="task-cards">
+      <div class="task-card">
+        <div class="card-title">Daily Tasks</div>
+        <ul>
+          <li *ngFor="let task of tasks; index as i">
+            <span *ngIf="!task.editing">{{ task.text }}</span>
+            <input *ngIf="task.editing" [(ngModel)]="task.text" />
+            <div class="actions">
+              <button (click)="editTask(i)" *ngIf="!task.editing" title="Edit">✏️</button>
+              <button (click)="saveTask(i)" *ngIf="task.editing" title="Save">💾</button>
+              <button (click)="deleteTask(i)" title="Delete">🗑️</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</div>
