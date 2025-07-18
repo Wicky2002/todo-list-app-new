@@ -1,20 +1,28 @@
-<div class="dashboard"> <aside class="sidebar"> <div class="logo">🗂️</div> <nav> <span class="material-icons">dashboard</span> <span class="material-icons">check_circle</span> <span class="material-icons">calendar_today</span> <span class="material-icons">settings</span> </nav> <div class="user"> <img src="https://i.pravatar.cc/40" alt="User Avatar" /> <button (click)="toggleDarkMode()" title="Toggle Theme">🌓</button> </div> </aside> <main class="main-content"> <header> <h1>{{ title }}</h1> <div class="task-inputs"> <input [(ngModel)]="newTask" placeholder="New Task..." /> <select [(ngModel)]="newCategory"> <option>General</option> <option>Work</option> <option>Personal</option> <option>Urgent</option> </select> <input type="time" [(ngModel)]="newTime" /> <button class="add-btn" (click)="addTask()">+ Add Task</button> </div> </header>
+<div class="dashboard"> <aside class="sidebar"> <div class="logo">🗂️</div> <nav> <span class="material-icons">dashboard</span> <span class="material-icons">check_circle</span> <span class="material-icons">calendar_today</span> <span class="material-icons">settings</span> </nav> <div class="user"> <img src="https://i.pravatar.cc/40" alt="User Avatar" /> <button (click)="toggleDarkMode()" title="Toggle Theme">🌓</button> </div> </aside> <main class="main-content"> <header> <h1>{{ title }}</h1> <div class="task-inputs"> <input [(ngModel)]="newTask" placeholder="New Task..." /> <select [(ngModel)]="newCategory"> <option>General</option> <option>Work</option> <option>Personal</option> </select> <select [(ngModel)]="newPriority"> <option>Low</option> <option>Moderate</option> <option>High</option> </select> <select [(ngModel)]="newStatus"> <option>Not Started</option> <option>In Progress</option> <option>Completed</option> </select> <input type="time" [(ngModel)]="newTime" /> <button class="add-btn" (click)="addTask()">+ Add Task</button> </div> </header>
 
 <section class="task-cards">
   <div class="task-card">
     <div class="card-title">Tasks</div>
     <ul cdkDropList (cdkDropListDropped)="drop($event)">
       <li *ngFor="let task of tasks; index as i" cdkDrag>
-        <div class="task-text">
-          <span *ngIf="!task.editing">{{ task.text }} <small>({{ task.time }}) - {{ task.category }}</small></span>
-          <input *ngIf="task.editing" [(ngModel)]="task.text" />
-        </div>
-        <div class="actions">
-          <button *ngIf="!task.editing" (click)="editTask(i)" title="Edit">✏️</button>
-          <button *ngIf="task.editing" (click)="saveTask(i)" title="Save">💾</button>
-          <button (click)="deleteTask(i)" title="Delete">🗑️</button>
+        <div class="task-card-content">
+          <div class="task-main">
+            <span class="task-text" *ngIf="!task.editing">{{ task.text }}</span>
+            <input *ngIf="task.editing" [(ngModel)]="task.text" />
+            <div class="badges">
+              <span class="tag" [ngClass]="task.priority">{{ task.priority }}</span>
+              <span class="tag" [ngClass]="task.status">{{ task.status }}</span>
+              <span class="meta">{{ task.category }} – {{ task.time }}</span>
+            </div>
+          </div>
+          <div class="actions">
+            <button *ngIf="!task.editing" (click)="editTask(i)" title="Edit">✏️</button>
+            <button *ngIf="task.editing" (click)="saveTask(i)" title="Save">💾</button>
+            <button (click)="deleteTask(i)" title="Delete">🗑️</button>
+          </div>
         </div>
       </li>
     </ul>
   </div>
 </section>
+
