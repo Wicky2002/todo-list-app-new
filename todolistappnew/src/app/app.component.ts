@@ -17,11 +17,16 @@ darkMode = false;
 newTask = '';
 newCategory = 'General';
 newTime = '';
+newPriority: 'Low' | 'Moderate' | 'High' = 'Moderate';
+newStatus: 'Not Started' | 'In Progress' | 'Completed' = 'Not Started';
+
 tasks: {
 text: string;
 editing: boolean;
 category: string;
 time: string;
+status: 'Not Started' | 'In Progress' | 'Completed';
+priority: 'Low' | 'Moderate' | 'High';
 }[] = [];
 
 toggleDarkMode() {
@@ -35,10 +40,15 @@ this.tasks.push({
 text: this.newTask,
 editing: false,
 category: this.newCategory || 'General',
-time: this.newTime || 'Anytime'
+time: this.newTime || 'Anytime',
+status: this.newStatus,
+priority: this.newPriority
 });
 this.newTask = '';
 this.newTime = '';
+this.newCategory = 'General';
+this.newPriority = 'Moderate';
+this.newStatus = 'Not Started';
 }
 }
 
@@ -54,7 +64,7 @@ deleteTask(index: number) {
 this.tasks.splice(index, 1);
 }
 
-drop(event: any) {
+drop(event: { previousIndex: number; currentIndex: number }) {
 const prevIndex = event.previousIndex;
 const currIndex = event.currentIndex;
 const moved = this.tasks.splice(prevIndex, 1)[0];

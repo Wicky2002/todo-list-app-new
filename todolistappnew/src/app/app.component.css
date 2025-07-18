@@ -3,7 +3,7 @@
 --background: #f8f9fc;
 --card-bg: #ffffff;
 --text-color: #333;
---font: 'Inter', sans-serif;
+--font: 'Segoe UI', sans-serif;
 }
 
 body {
@@ -74,7 +74,8 @@ flex-wrap: wrap;
 gap: 0.5rem;
 }
 
-.task-inputs input, .task-inputs select {
+.task-inputs input,
+.task-inputs select {
 padding: 0.5rem;
 border-radius: 6px;
 border: 1px solid #ccc;
@@ -129,9 +130,6 @@ background: #e8eaf6;
 margin-bottom: 0.75rem;
 border-radius: 10px;
 padding: 0.6rem 1rem;
-display: flex;
-justify-content: space-between;
-align-items: center;
 transition: 0.2s ease;
 }
 
@@ -139,16 +137,68 @@ body.dark li {
 background: #3a3b40;
 }
 
-.task-text input {
-padding: 0.5rem;
-border-radius: 6px;
-border: 1px solid #ccc;
+.task-card-content {
+display: flex;
+justify-content: space-between;
+flex-direction: column;
+}
+
+.task-main {
+display: flex;
+flex-direction: column;
+gap: 4px;
+}
+
+.task-text {
+font-weight: 600;
+font-size: 1rem;
+}
+
+.badges {
+margin-top: 0.5rem;
+display: flex;
+gap: 0.5rem;
+flex-wrap: wrap;
+}
+
+.tag {
+font-size: 0.75rem;
+padding: 4px 8px;
+border-radius: 12px;
+font-weight: bold;
+text-transform: capitalize;
+color: white;
+}
+
+.Low {
+background-color: #4caf50;
+}
+.Moderate {
+background-color: #ff9800;
+}
+.High {
+background-color: #f44336;
+}
+
+.Completed {
+background-color: #4caf50;
+}
+.In\ Progress {
+background-color: #2196f3;
+}
+.Not\ Started {
+background-color: #9e9e9e;
+}
+
+.meta {
+font-size: 0.7rem;
+color: gray;
 }
 
 .actions button {
 background: none;
 border: none;
 font-size: 1.2rem;
-margin-left: 0.3rem;
+margin-top: 0.5rem;
 cursor: pointer;
 }
