@@ -7,8 +7,8 @@
       <li *ngFor="let task of tasks; index as i" cdkDrag>
         <div class="task-card-content">
           <div class="task-main">
-            <span class="task-text" *ngIf="!task.editing">{{ task.text }}</span>
-            <input *ngIf="task.editing" [(ngModel)]="task.text" />
+            <span class="task-text" *ngIf="!task.editing">{{ task.title }}</span>
+            <input *ngIf="task.editing" [(ngModel)]="task.title" />
             <div class="badges">
               <span class="tag" [ngClass]="task.priority">{{ task.priority }}</span>
               <span class="tag" [ngClass]="task.status">{{ task.status }}</span>
